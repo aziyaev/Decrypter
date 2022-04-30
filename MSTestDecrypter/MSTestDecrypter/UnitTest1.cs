@@ -10,13 +10,15 @@ using System.Text;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
+using Microsoft.Win32;
+using DecrypterWPF;
 
 namespace MSTestDecrypter
 {
     [TestClass]
     public class UnitTest1
     {
-        private List<string> ExpectedItemsEncode = new List<string>()
+        private static List<string> ExpectedItemsEncodeSorpion = new List<string>()
         {
             "ькяь г уънвё выаиъ шаыоьыд",
             "р х ррь шчёе — вуую пу оацу?",
@@ -28,7 +30,21 @@ namespace MSTestDecrypter
             "уё ьх юъбнуубх ьньм."
 
         };
-        private List<string> ExpectedItemsDecode = new List<string>()
+
+        private static List<string> ExpectedItemsEncode1a = new List<string>()
+        {
+            "лбсм ф лмбсь флсбм лпсбммь",
+            "а л гбн рйщф — шёдп зё впмё?",
+            "шуп а нпдф ёъё тлбибуэ?",
+            "уёрёсэ, а иобя, г гбщёк гпмё",
+            "нёоа рсёисёоэён облбибуэ.",
+            "оп гь, л нпёк оётшбтуопк епмё",
+            "цпуэ лбрмя збмптуй цсбоа,",
+            "гь оё птубгйуё нёоа."
+
+        };
+
+        private static List<string> ExpectedItemsDecode = new List<string>()
         {
             "карл у клары украл кораллы",
             "я к вам пишу — чего же боле?",
@@ -40,7 +56,18 @@ namespace MSTestDecrypter
             "Вы не оставите меня."
         };
 
-        private const string keyword = "скорпион";
+
+        private static Dictionary<string, List<string>> testSet = new Dictionary<string, List<string>>()
+        {
+            {
+                "скорпион", ExpectedItemsEncodeSorpion
+            },
+            {
+                "1а" , ExpectedItemsEncode1a
+            }
+        };
+
+
 
         [TestMethod]
         public void TestMethod1()
@@ -48,10 +75,20 @@ namespace MSTestDecrypter
             DecrypterWPF.Decrypter decrypter = new DecrypterWPF.Decrypter();
             decrypter.IsConsiderLetterCase = false;
             decrypter.IsEncodeText = false;
+            
 
-            for (int i = 0; i < ExpectedItemsEncode.Count; i++)
+            string key = "скорпион";
+            for (int i = 0; i < testSet[key].Count; i++)
             {
-                string output = decrypter.ConvertText(ExpectedItemsEncode[i], keyword);
+                string output = decrypter.ConvertText(testSet[key][i], key);
+                Assert.AreEqual(output, ExpectedItemsDecode[i].ToLower());
+            }
+
+            decrypter.ROT = 1;
+            key = "1а";
+            for (int i = 0; i < testSet[key].Count; i++)
+            {
+                string output = decrypter.ConvertText(testSet[key][i], key);
                 Assert.AreEqual(output, ExpectedItemsDecode[i].ToLower());
             }
         }
@@ -63,33 +100,21 @@ namespace MSTestDecrypter
             decrypter.IsConsiderLetterCase = false;
             decrypter.IsEncodeText = true;
 
-            for (int i = 0; i < ExpectedItemsEncode.Count; i++)
+            string key = "скорпион";
+            for (int i = 0; i < testSet[key].Count; i++)
             {
-                string output = decrypter.ConvertText(ExpectedItemsDecode[i], keyword);
-                Assert.AreEqual(output, ExpectedItemsEncode[i].ToLower());
+                string output = decrypter.ConvertText(ExpectedItemsDecode[i], key);
+                Assert.AreEqual(output, testSet[key][i].ToLower());
+            }
+
+            decrypter.ROT = 1;
+            key = "1а";
+            for (int i = 0; i < testSet[key].Count; i++)
+            {
+                string output = decrypter.ConvertText(ExpectedItemsDecode[i], key);
+                Assert.AreEqual(output, testSet[key][i].ToLower());
             }
             //string output = decrypter.ConvertText()
-        }
-
-        [TestMethod]
-        public void TestMethod3()
-        {
-            var expectedFileContent = "Тосты, как родители. Если она оба чёрные, то тебе нечего есть";
-            var expectedFileName = "filename.txt";
-
-            var fileSystem = new Mock<IFileSystem>();
-            fileSystem.Setup(_ => _.ReadAllText(expectedFileName))
-            .Returns(expectedFileContent)
-            .Verifiable();
-
-            var openFileDialog = new Mock<IOpenFileDialog>();
-            openFileDialog.Setup(_ => _.ShowDialog()).Returns(DialogResult.OK).Verifiable();
-            openFileDialog.Setup(_ => _.FileName).Returns(expectedFileName).Verifiable();
-
-            DecrypterWPF.TextFileService sut = new DecrypterWPF.TextFileService();
-
-
-            
         }
 
 
