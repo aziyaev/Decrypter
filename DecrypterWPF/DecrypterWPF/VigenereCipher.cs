@@ -25,7 +25,8 @@ namespace DecrypterWPF
 
         private bool isConsiderLetterCase;
         private int ROT;
-        private Alphabet alphabet; 
+        private Alphabet alphabet;
+
 
         public VigenereCipher(Alphabet alphabet, bool isConsiderLetterCase = true, int ROT = 0)
         {
@@ -39,8 +40,8 @@ namespace DecrypterWPF
             int len = UpperAlphabetRU.Length;
 
             string result = "";
-            char[] currentUpperAlphabet = null;
-            char[] currentLowerAlphabet = null;
+            char[] currentUpperAlphabet = UpperAlphabetRU;
+            char[] currentLowerAlphabet = LowerAlphabetRU;
 
             switch (alphabet)
             {
@@ -49,6 +50,17 @@ namespace DecrypterWPF
                     currentLowerAlphabet = LowerAlphabetRU;
                     break;
             }
+
+            string clearKeyword = "";
+
+            foreach (char c in keyword)
+            {
+                if (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c))
+                    clearKeyword += c;
+            }
+
+            if (string.IsNullOrEmpty(clearKeyword) || string.IsNullOrWhiteSpace(clearKeyword))
+                return input;
 
 
             int keywordIndex = 0;
@@ -60,20 +72,20 @@ namespace DecrypterWPF
                     int index = 0;
                     if (Char.IsLower(c))
                     {
-                        keyword = keyword.ToLower();
-                        index = (Array.IndexOf(currentLowerAlphabet, c) + len + Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) + ROT) % len;
+                        clearKeyword = clearKeyword.ToLower();
+                        index = (Array.IndexOf(currentLowerAlphabet, c) + len + Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                         result += LowerAlphabetRU[index];
                     }
                     else if (Char.IsUpper(c))
                     {
-                        keyword = keyword.ToUpper();
-                        index = (Array.IndexOf(currentUpperAlphabet, c) + len + Array.IndexOf(currentUpperAlphabet, keyword[keywordIndex]) + ROT) % len;
+                        clearKeyword = clearKeyword.ToUpper();
+                        index = (Array.IndexOf(currentUpperAlphabet, c) + len + Array.IndexOf(currentUpperAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                         result += currentUpperAlphabet[index];
                     }
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -82,12 +94,12 @@ namespace DecrypterWPF
                 {
 
                     int index = 0;
-                    keyword = keyword.ToLower();
-                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len + Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) + ROT) % len;
+                    clearKeyword = clearKeyword.ToLower();
+                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len + Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                     result += currentLowerAlphabet[index];
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -102,9 +114,9 @@ namespace DecrypterWPF
         {
             int len = UpperAlphabetRU.Length;
 
-            string result = ""; 
-            char[] currentUpperAlphabet = null;
-            char[] currentLowerAlphabet = null;
+            string result = "";
+            char[] currentUpperAlphabet = UpperAlphabetRU;
+            char[] currentLowerAlphabet = LowerAlphabetRU;
 
             switch (alphabet)
             {
@@ -113,6 +125,17 @@ namespace DecrypterWPF
                     currentLowerAlphabet = LowerAlphabetRU;
                     break;
             }
+
+            string clearKeyword = "";
+
+            foreach (char c in keyword)
+            {
+                if (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c))
+                    clearKeyword += c;
+            }
+
+            if (string.IsNullOrEmpty(clearKeyword) || string.IsNullOrWhiteSpace(clearKeyword))
+                return input;
 
             int keywordIndex = 0;
 
@@ -123,21 +146,21 @@ namespace DecrypterWPF
                     int index = 0;
                     if (Char.IsLower(c))
                     {
-                        keyword = keyword.ToLower();
-                        index = (Array.IndexOf(currentLowerAlphabet, c) + len - Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) - ROT) % len;
+                        clearKeyword = clearKeyword.ToLower();
+                        index = (Array.IndexOf(currentLowerAlphabet, c) + len - Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
 
                         result += currentLowerAlphabet[index];
                     }
                     else if (Char.IsUpper(c))
                     {
-                        keyword = keyword.ToUpper();
-                        index = (Array.IndexOf(currentUpperAlphabet, c) + len - Array.IndexOf(currentUpperAlphabet, keyword[keywordIndex]) - ROT) % len;
+                        clearKeyword = clearKeyword.ToUpper();
+                        index = (Array.IndexOf(currentUpperAlphabet, c) + len - Array.IndexOf(currentUpperAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
                         result += currentUpperAlphabet[index];
                     }
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -145,13 +168,13 @@ namespace DecrypterWPF
                 else if (Char.IsLetter(c) && (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c)))
                 {
                     int index = 0;
-                    keyword = keyword.ToLower();
-                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len - Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) - ROT) % len;
+                    clearKeyword = clearKeyword.ToLower();
+                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len - Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
 
                     result += currentLowerAlphabet[index];
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -162,7 +185,6 @@ namespace DecrypterWPF
             return result;
         }
     }
-
 
 
 }
