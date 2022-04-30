@@ -41,6 +41,10 @@ The application has the following functionality:
 
 [Source](https://github.com/aziyaev/Decrypter/tree/main/VigenereCipher)
 
+Testing has shown that the encryption and decryption functions work correctly.
+
+<img src="https://github.com/aziyaev/Decrypter/blob/main/MSTestDecrypter/asp.png" alt="aspScreen"/>
+
 ##### Encode function
 
 The Vigener encryption function by the method of simple substitution with a key
