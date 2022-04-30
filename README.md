@@ -43,6 +43,8 @@ The application has the following functionality:
 
 Testing has shown that the encryption and decryption functions work correctly.
 
+The application was tested using [MSTest](https://github.com/aziyaev/Decrypter/tree/main/MSTestDecrypter) Visual Studio.
+
 <img src="https://github.com/aziyaev/Decrypter/blob/main/MSTestDecrypter/asp.png" alt="aspScreen"/>
 
 ##### Encode function
