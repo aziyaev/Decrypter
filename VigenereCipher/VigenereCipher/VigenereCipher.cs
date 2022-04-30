@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace DecrypterWebApp.Controllers
 {
+    public enum Alphabet
+    {
+        rus,
+        eng
+    }
+
     public class VigenereCipher
     {
         private static char[] UpperAlphabetRU = new char[] {
@@ -25,12 +31,14 @@ namespace DecrypterWebApp.Controllers
 
         private bool isConsiderLetterCase;
         private int ROT;
+        private Alphabet alphabet;
 
 
-        public VigenereCipher(bool isConsiderLetterCase = true, int ROT = 0)
+        public VigenereCipher(Alphabet alphabet, bool isConsiderLetterCase = true, int ROT = 0)
         {
             this.isConsiderLetterCase = isConsiderLetterCase;
             this.ROT = ROT;
+            this.alphabet = alphabet;
         }
 
         public string Encode(string input, string keyword)
@@ -40,6 +48,25 @@ namespace DecrypterWebApp.Controllers
             string result = "";
             char[] currentUpperAlphabet = UpperAlphabetRU;
             char[] currentLowerAlphabet = LowerAlphabetRU;
+
+            switch (alphabet)
+            {
+                case Alphabet.rus:
+                    currentUpperAlphabet = UpperAlphabetRU;
+                    currentLowerAlphabet = LowerAlphabetRU;
+                    break;
+            }
+
+            string clearKeyword = "";
+
+            foreach (char c in keyword)
+            {
+                if (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c))
+                    clearKeyword += c;
+            }
+
+            if (string.IsNullOrEmpty(clearKeyword) || string.IsNullOrWhiteSpace(clearKeyword))
+                return input;
 
 
             int keywordIndex = 0;
@@ -51,20 +78,20 @@ namespace DecrypterWebApp.Controllers
                     int index = 0;
                     if (Char.IsLower(c))
                     {
-                        keyword = keyword.ToLower();
-                        index = (Array.IndexOf(currentLowerAlphabet, c) + len + Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) + ROT) % len;
+                        clearKeyword = clearKeyword.ToLower();
+                        index = (Array.IndexOf(currentLowerAlphabet, c) + len + Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                         result += LowerAlphabetRU[index];
                     }
                     else if (Char.IsUpper(c))
                     {
-                        keyword = keyword.ToUpper();
-                        index = (Array.IndexOf(currentUpperAlphabet, c) + len + Array.IndexOf(currentUpperAlphabet, keyword[keywordIndex]) + ROT) % len;
+                        clearKeyword = clearKeyword.ToUpper();
+                        index = (Array.IndexOf(currentUpperAlphabet, c) + len + Array.IndexOf(currentUpperAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                         result += currentUpperAlphabet[index];
                     }
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -73,12 +100,12 @@ namespace DecrypterWebApp.Controllers
                 {
 
                     int index = 0;
-                    keyword = keyword.ToLower();
-                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len + Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) + ROT) % len;
+                    clearKeyword = clearKeyword.ToLower();
+                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len + Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) + ROT) % len;
 
                     result += currentLowerAlphabet[index];
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -97,6 +124,25 @@ namespace DecrypterWebApp.Controllers
             char[] currentUpperAlphabet = UpperAlphabetRU;
             char[] currentLowerAlphabet = LowerAlphabetRU;
 
+            switch (alphabet)
+            {
+                case Alphabet.rus:
+                    currentUpperAlphabet = UpperAlphabetRU;
+                    currentLowerAlphabet = LowerAlphabetRU;
+                    break;
+            }
+
+            string clearKeyword = "";
+
+            foreach (char c in keyword)
+            {
+                if (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c))
+                    clearKeyword += c;
+            }
+
+            if (string.IsNullOrEmpty(clearKeyword) || string.IsNullOrWhiteSpace(clearKeyword))
+                return input;
+
             int keywordIndex = 0;
 
             foreach (char c in input)
@@ -106,21 +152,21 @@ namespace DecrypterWebApp.Controllers
                     int index = 0;
                     if (Char.IsLower(c))
                     {
-                        keyword = keyword.ToLower();
-                        index = (Array.IndexOf(currentLowerAlphabet, c) + len - Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) - ROT) % len;
+                        clearKeyword = clearKeyword.ToLower();
+                        index = (Array.IndexOf(currentLowerAlphabet, c) + len - Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
 
                         result += currentLowerAlphabet[index];
                     }
                     else if (Char.IsUpper(c))
                     {
-                        keyword = keyword.ToUpper();
-                        index = (Array.IndexOf(currentUpperAlphabet, c) + len - Array.IndexOf(currentUpperAlphabet, keyword[keywordIndex]) - ROT) % len;
+                        clearKeyword = clearKeyword.ToUpper();
+                        index = (Array.IndexOf(currentUpperAlphabet, c) + len - Array.IndexOf(currentUpperAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
                         result += currentUpperAlphabet[index];
                     }
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
@@ -128,13 +174,13 @@ namespace DecrypterWebApp.Controllers
                 else if (Char.IsLetter(c) && (currentLowerAlphabet.Contains(c) || currentUpperAlphabet.Contains(c)))
                 {
                     int index = 0;
-                    keyword = keyword.ToLower();
-                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len - Array.IndexOf(currentLowerAlphabet, keyword[keywordIndex]) - ROT) % len;
+                    clearKeyword = clearKeyword.ToLower();
+                    index = (Array.IndexOf(currentLowerAlphabet, char.ToLower(c)) + len - Array.IndexOf(currentLowerAlphabet, clearKeyword[keywordIndex]) - ROT) % len;
 
 
                     result += currentLowerAlphabet[index];
 
-                    if (keywordIndex + 1 == keyword.Length)
+                    if (keywordIndex + 1 == clearKeyword.Length)
                         keywordIndex = 0;
                     else
                         keywordIndex++;
