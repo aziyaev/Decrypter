@@ -1,0 +1,59 @@
+﻿
+
+<html style="font-size: 16px;">
+    <head>
+        <meta name="viewport" content="width=device-width"/>
+        <meta charset="utf-8">
+        <link href="~/css/custom.css" rel="stylesheet"/>
+        <title>Шифр Виженера</title>
+    </head>
+    <body style="background-color: #e5e5e5; padding: 20px;">
+       <header class="u-clearfix u-grey-10 u-header u-header" id="sec-50e0"><div class="u-align-left u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h1 class="u-text u-text-default u-text-1">Шифр Виженера</h1>
+      </div></header>
+
+      <section class="u-clearfix u-palette-5-light-2 u-section-1" id="sec-13fa">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-text u-text-1">Что это такое<br>
+        </h3>
+        <p class="u-text u-text-2">Калькулятор шифрует входной текст на русском языке шифром Виженера. Неалфавитные символы (пробелы, знаки препинания, цифры) — не преобразуются.</p>
+      </div>
+
+    </section>
+    
+    <section class="u-align-center u-clearfix u-section-2" id="sec-176b">
+    <form id="form1" method="post" action="">
+      <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <h4 class="u-text u-text-default u-text-1">Текст<br>
+        </h4>
+        <div class="u-clearfix u-custom-html u-hover-feature u-custom-html-1">
+          <style></style>
+          
+          <textarea name="Input" cols="120px" rows="10px" resize="none">@ViewData["Input"]</textarea>
+          
+        </div>
+        <h4 class="u-text u-text-default u-text-2">Ключ</h4>
+        <div class="u-clearfix u-custom-html u-custom-html-2">
+            <input type="text" name="Keyword" value="@ViewData["Keyword"]" required="required">
+            <button name="Convert" type="submit" value="encode">
+                Зашифровать
+            </button>
+            <button name="Convert" type="submit" value="decode">
+                Расшифровать
+            </button>
+        </div>
+        <h4 class="u-text u-text-default u-text-3">Преобразованный текст</h4>
+        <textarea name="Input" cols="120px" rows="8px" resize="none" readonly="readonly">@ViewData["Output"]</textarea>
+      </div>
+      
+      </form>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-88ea" style="position: absolute; left: 0; bottom: 0; width: 100%;">
+        <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">NYSS Course Work. Ziyaev Azizbek</p>
+      </div>
+      </footer>
+    </body>
+</html>

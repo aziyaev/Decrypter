@@ -1,0 +1,12 @@
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\bin\Release\net6.0\VigenereCipher.deps.json
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\bin\Release\net6.0\VigenereCipher.dll
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\bin\Release\net6.0\VigenereCipher.pdb
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.csproj.AssemblyReference.cache
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.AssemblyInfoInputs.cache
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.AssemblyInfo.cs
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.csproj.CoreCompileInputs.cache
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.dll
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\refint\VigenereCipher.dll
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\VigenereCipher.pdb
+C:\Users\Azizbek\Desktop\Education Projects\Decrypter\VigenereCipher\VigenereCipher\obj\Release\net6.0\ref\VigenereCipher.dll

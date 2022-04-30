@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "cJfJsl1hsEfrlkN0k1R5QVRxFEInSjqsknwOUf4EXtJjgsREjGHcUnb9DR1EzdzHOzbXdYyX8+VdFFU23NiMEQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Azizbek\\Desktop\\Education Projects\\Decrypter\\DecrypterWebApp\\DecrypterWebApp\\DecrypterWebApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Azizbek\\.nuget\\packages\\bootstrap\\3.0.0\\bootstrap.3.0.0.nupkg.sha512",
+    "C:\\Users\\Azizbek\\.nuget\\packages\\jquery\\1.9.0\\jquery.1.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}
