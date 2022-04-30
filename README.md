@@ -41,15 +41,15 @@ The application has the following functionality:
 
 [Source](https://github.com/aziyaev/Decrypter/tree/main/VigenereCipher)
 
-Testing has shown that the encryption and decryption functions work correctly.
-
-The application was tested using [MSTest](https://github.com/aziyaev/Decrypter/tree/main/MSTestDecrypter) Visual Studio.
-
 <img src="https://github.com/aziyaev/Decrypter/blob/main/MSTestDecrypter/asp.png" alt="aspScreen"/>
 
 ##### Encode function
 
 The Vigener encryption function by the method of simple substitution with a key
+
+Testing has shown that the encryption and decryption functions work correctly.
+
+The application was tested using [MSTest](https://github.com/aziyaev/Decrypter/tree/main/MSTestDecrypter) Visual Studio.
 
 ```C#
 public string Encode(string input, string keyword)
