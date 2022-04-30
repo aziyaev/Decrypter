@@ -42,13 +42,13 @@ The application has the following functionality:
 
 [Source](https://github.com/aziyaev/Decrypter/tree/main/VigenereCipher)
 
-##### Encode function
-
 The Vigener encryption function by the method of simple substitution with a key
 
 Testing has shown that the encryption and decryption functions work correctly.
 
 The application was tested using [MSTest](https://github.com/aziyaev/Decrypter/tree/main/MSTestDecrypter) Visual Studio.
+
+##### Encode function
 
 ```C#
 public string Encode(string input, string keyword)
