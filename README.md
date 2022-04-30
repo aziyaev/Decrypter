@@ -42,8 +42,6 @@ The application has the following functionality:
 
 [Source](https://github.com/aziyaev/Decrypter/tree/main/VigenereCipher)
 
-<img src="https://github.com/aziyaev/Decrypter/blob/main/MSTestDecrypter/asp.png" alt="aspScreen"/>
-
 ##### Encode function
 
 The Vigener encryption function by the method of simple substitution with a key
