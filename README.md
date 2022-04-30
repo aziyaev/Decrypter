@@ -37,7 +37,8 @@ The application has the following functionality:
 * Decryption by a given key.
 * Нou can change the alphabet to the suggested one (currently: Rus)
 
-#### Sources of the Vigener Cipher
+
+### Sources of the Vigener Cipher
 
 [Source](https://github.com/aziyaev/Decrypter/tree/main/VigenereCipher)
 
